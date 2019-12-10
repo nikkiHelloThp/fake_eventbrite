@@ -1,0 +1,25 @@
+<% if current_user == @user %>
+	<h2>My profile</h2>
+	<p>email: <%= @user.email %></p>
+	<p>first name: <%= @user.f_name %></p>
+	<p>last name: <%= @user.l_name %></p>
+	<p>description: <%= @user.description %></p>
+	
+	<% if @user.avatar.attached? %>
+		<p>mon avatar: <%= image_tag @user.avatar, alt: 'avatar' %></p>
+	<% else %>
+		<p>=== Il n'y a aucun avatar lie pour l'instant ===</p>
+	<% end %>
+
+	<%= form_with(url: user_avatars_path(@user), multipart: true) do %>
+  	<%= file_field_tag :avatar %>
+  	<%= submit_tag 'mettre a jour' %>
+	<% end %>
+
+	<%= link_to 'edit', edit_user_registration_path %>
+
+	<h3>My events</h3>
+	<% @events.each_with_index do |event, index| %>
+	<p><%= index + 1%> - <%= event.title %> <%= link_to 'show', event_path(event.id) %></p>
+	<% end %>
+<% end %>

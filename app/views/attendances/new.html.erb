@@ -1,0 +1,23 @@
+<% unless @event.is_free? %>
+  <%= form_tag event_attendances_path, method: :post do %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+      <label class="amount">
+        <span>Amount: $<%= @amount %></span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="A month's subscription"
+            data-amount="<%= @amount_in_cent %>"
+            data-locale="auto"></script>
+  <% end %>
+<% else %>
+  <p>Cet evenement est gratuit!!! &#129323;</p>
+  <%= link_to 'clique ici', event_attendances_path(@event.id), method: :post %>
+<% end %>

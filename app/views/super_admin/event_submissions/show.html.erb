@@ -1,0 +1,10 @@
+<p>id: <%= @event_to_valid.id %></p>
+<p>start date: <%= @event_to_valid.start_date %></p>
+<p>duration: <%= @event_to_valid.duration %></p>
+<p>title: <%= @event_to_valid.title %></p>
+<p>description: <%= @event_to_valid.description %></p>
+<p>price: <%= @event_to_valid.price %></p>
+<p>location: <%= @event_to_valid.location %></p>
+<p>creator: <%= @event_to_valid.admin_id %></p>
+<p>created at: <%= @event_to_valid.created_at %></p>
+<%= link_to 'Edit', edit_super_admin_event_submission_path(@event_to_valid), class: "btn btn-warning" %>

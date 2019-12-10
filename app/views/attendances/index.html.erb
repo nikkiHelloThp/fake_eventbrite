@@ -1,0 +1,9 @@
+<% @attendances.each do |attendance| %>
+	<% if attendance.attendee.f_name != nil %> 
+		<p>name: <%= attendance.attendee.f_name %></p>
+	<% else %>
+		<p>no name: <%= attendance.attendee.id %></p>
+	<% end %>	
+<% end %>
+<%= link_to 'edit event', edit_event_path(@event.id) %>
+<%= link_to 'destroy event', event_path(@event.id), method: :delete %>

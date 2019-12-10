@@ -1,0 +1,4 @@
+<%= form_with scope: :event, url: super_admin_event_submission_path(@event_to_valid), method: :patch do |f| %>
+	<%= f.select(:validated, options_for_select(['yes', 'no'])) %>
+	<%= f.submit 'Valid' %>
+<% end %>

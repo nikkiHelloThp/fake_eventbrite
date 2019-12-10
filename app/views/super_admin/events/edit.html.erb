@@ -1,0 +1,26 @@
+<h1>SuperAdmin</h1>
+<p>Edit an existing event...</p>
+
+<%= form_with(url: super_admin_event_path(@event), method: 'patch') do %>
+
+	<%= label_tag("start date:") %>
+	<%= datetime_local_field(:event, :start_date) %>
+
+	<%= label_tag("duration:") %>
+	<%= number_field(:event, :duration, step: 5) %>
+
+	<%= label_tag("title:") %>
+	<%= text_field_tag(:title, @event.title)%>
+
+
+	<%= label_tag("description:") %>
+	<%= text_area_tag(:description, @event.description) %>
+
+	<%= label_tag("price:") %>
+	<%= number_field(:event, :price) %>
+
+	<%= label_tag("location:") %>
+	<%= text_field_tag(:location, @event.location) %>
+	
+	<%= submit_tag("Update") %>
+<% end %>

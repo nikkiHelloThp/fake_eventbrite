@@ -1,0 +1,9 @@
+<h1>To validate</h1>
+<% @events_to_valid.each do |event_to_valid| %>
+	<p><%= event_to_valid.title %> <%= link_to 'Show', super_admin_event_submission_path(event_to_valid), class: "btn btn-primary" %></p>
+<% end %>
+<hr>
+<h2>Already validated</h2>
+<% @validated_events.each do |event| %>
+	<p><%= event.title %></p>
+<% end %>
