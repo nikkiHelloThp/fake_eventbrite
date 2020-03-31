@@ -1,10 +1,5 @@
 # README
 
-## ajouter AWS
-
-## ajouter une restriction de taille aux images uploadees
-## ajouter un formulaire username
-
 ## Added gems
 * in developpment group:
 - faker

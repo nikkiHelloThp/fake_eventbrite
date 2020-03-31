@@ -32,8 +32,13 @@
 
  *= require boomerang.min
  */
+
+html {
+	scroll-behavior: smooth;
+}
+
 #section_background {
-	background-image: url("background/slider/img-18.jpg");
+	background-image: url("background/slider/img-49.jpg");
 }
 
 .eventbrite-color {

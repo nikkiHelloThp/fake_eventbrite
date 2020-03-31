@@ -1,9 +1,62 @@
-<% @attendances.each do |attendance| %>
-	<% if attendance.attendee.f_name != nil %> 
-		<p>name: <%= attendance.attendee.f_name %></p>
-	<% else %>
-		<p>no name: <%= attendance.attendee.id %></p>
-	<% end %>	
-<% end %>
-<%= link_to 'edit event', edit_event_path(@event.id) %>
-<%= link_to 'destroy event', event_path(@event.id), method: :delete %>
+<div class="card no-border">
+    <div class="card-body px-0">
+        <ul class="list-group">
+            <li class="list-group-item bg-transparent">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h5 class="heading heading-6 strong-500">Participants</h5>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-sm list-group-item-light">
+                            <div class="row">
+                                <div class="col-6">
+                                    #
+                                </div>
+                                <div class="col-6">
+                                    Nom
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <div class="row">
+                            	<% @attendances.each do |attendance| %>
+                            		<div class="col-6">
+                            			<%= attendance.attendee.id %>
+                            		</div>
+                                <div class="col-6">
+                                    <span class="c-gray-dark"><%= attendance.attendee.f_name %> <%= attendance.attendee.l_name %></span>
+                                </div>
+                              <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-group-item bg-transparent">
+                <div class="card mt-4">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-sm list-group-item-light">
+                            <div class="row">
+                                <div class="col">
+                                    Gerer evenement
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <div class="row">
+                                <div class="col">
+									<%= link_to 'edit event', edit_event_path(@event.id), class: 'btn btn-warning btn-outline' %>
+									<%= link_to 'destroy event', event_path(@event.id), method: :delete, class: 'btn btn-danger btn-outline' %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

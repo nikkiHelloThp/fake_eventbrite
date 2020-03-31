@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :photos, only: [:create]
   end
   
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :edit, :update] do
   	resources :avatars, only: [:create]
   end
   

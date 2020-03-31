@@ -6,7 +6,7 @@
                     <div class="col-lg-4">
                         <div class="sidebar sidebar--style-2 no-border stickyfill">
                             <div class="widget">
-                                <!-- Profile picture -->
+
                                 <div class="profile-picture profile-picture--style-2">
                                     <% if @user.avatar.attached? %>
                                         <%= image_tag @user.avatar, alt: 'avatar', class: 'img-center' %>
@@ -15,16 +15,15 @@
                                     <% end %>
                                 </div>
 
-                                <!-- Profile details -->
                                 <div class="profile-details">
                                     <h2 class="heading heading-4 strong-500 profile-name"><%= @user.f_name %> <%= @user.l_name %></h2>
                                     <h3 class="heading heading-6 strong-400 profile-occupation mt-3"><%= @user.description %></h3>
                                     <h3 class="heading heading-light heading-6 strong-400 profile-location"><%= @user.email %></h3>
                                 </div>
 
-                                <!-- Profile connect -->
                                 <div class="profile-connect mt-4">
-                                    <%= link_to 'Editer', edit_user_registration_path, class: "btn btn-styled btn-block btn-rounded btn-base-1" %>
+                                    <%= link_to 'Editer Compte', edit_user_registration_path, class: "btn btn-styled btn-block btn-rounded btn-base-1" %>
+                                    <%= link_to 'Editer Info', edit_user_path(@user), class: "btn btn-styled btn-outline btn-block btn-rounded btn-base-1" %>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +31,7 @@
 
                     <div class="col-lg-8">
                         <div class="main-content">
-                            <!-- Page title -->
+
                             <div class="page-title">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-12">
@@ -50,7 +49,6 @@
 
                             <hr>
 
-                            <!-- Security steps -->
                             <div class="card no-border">
                                 <div class="card-body px-0">
                                     <ul class="list-group">
