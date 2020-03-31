@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root 'events#index'
-  
   devise_for :users
   
   resources :events do
@@ -12,8 +11,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
   	resources :avatars, only: [:create]
   end
-  
-  resources :static_pages, only: [:index]
   
   namespace :super_admin do
     root 'super_admins#index'

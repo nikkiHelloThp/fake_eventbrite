@@ -1,4 +1,17 @@
-<%= form_with scope: :event, url: super_admin_event_submission_path(@event_to_valid), method: :patch do |f| %>
-	<%= f.select(:validated, options_for_select(['yes', 'no'])) %>
-	<%= f.submit 'Valid' %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <br><br><br>
+			<%= form_with scope: :event, url: super_admin_event_submission_path(@event), method: :patch, class: "form-signin mt-3" do |f| %>
+			<div class="form-group">
+				<%= f.label("valid ?") %>
+				<%= f.select(:validated, options_for_select(['yes', 'no']), {}, {class: "form-control"}) %>
+			</div>
+			<div class="actions mt-5 mb-3">
+				<%= f.submit 'Valid', class: "btn btn-lg btn-primary btn-block" %>
+			</div>
+			<% end %>
+    </div>
+  </div>
+	<%= link_to "Back", :back %>
+</div>

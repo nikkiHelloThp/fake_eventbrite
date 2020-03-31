@@ -9,7 +9,7 @@ class SuperAdmin::SuperAdminsController < ApplicationController
 
   def check_if_super_admin
 		 if current_user
-  		@admin = current_user if current_user.is_super_admin == true
+  		@admin = current_user if current_user.is_super_admin
   	end
 	end
 end

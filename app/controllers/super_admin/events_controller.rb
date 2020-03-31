@@ -1,26 +1,21 @@
 class SuperAdmin::EventsController < ApplicationController
+  before_action :set_event, only: %i[show edit update destroy]
+
   def index
     @events = Event.all
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def new
+    @event = Event.new
   end
 
   def create
-    event = Event.new(
-                       start_date: params[:event][:start_date],
-                       duration: params[:event][:duration],
-                       title: params[:title],
-                       description: params[:description],
-                       price: params[:event][:price],
-                       location: params[:location],
-                       admin_id: current_user.id,
-                       validated: true
-                     )
+    event = Event.new(event_params)
+    event.admin = current_user
+    event.validated = true
     if event.save
       flash[:success] = "Event created"
       redirect_to super_admin_events_path
@@ -28,22 +23,14 @@ class SuperAdmin::EventsController < ApplicationController
       flash.now[:danger] = "#{event.errors.messages}"
       render :new
     end
+    p event.errors.full_messages
   end
 
   def edit
-    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
-    if @event.update(
-                       start_date: params[:event][:start_date],
-                       duration: params[:event][:duration],
-                       title: params[:title],
-                       description: params[:description],
-                       price: params[:event][:price],
-                       location: params[:location]
-                    )
+    if @event.update(event_params)
       flash[:success] = "Event updated"
       redirect_to super_admin_events_path
     else
@@ -53,10 +40,20 @@ class SuperAdmin::EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
     if @event.destroy
       flash[:danger] = "Event destroyed"
       redirect_to super_admin_events_path
     end
+  end
+
+
+  private
+
+  def set_event
+    @event ||= Event.find(params[:id])
+  end
+
+  def event_params
+    params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location)
   end
 end

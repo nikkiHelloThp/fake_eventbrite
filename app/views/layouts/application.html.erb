@@ -4,64 +4,42 @@
     <title>EventBrite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" %>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet"> 
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
+    <%= stylesheet_link_tag href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <%= link_to 'Events', root_path, class: "navbar-brand" %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <%= link_to 'Create an event', new_event_path, class: "nav-link" %>
-          </li>
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to 'Mon profil', user_path(current_user), class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Se deconnecter', destroy_user_session_path, method: :delete, class: "nav-link" %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to 'S\'inscrire', new_user_registration_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Se connecter', new_user_session_path, class: "nav-link" %>           
-            </li>
-          <% end %>
-
-          <% if current_user && current_user.is_super_admin %>
-            <li class="nav-item">
-              <%= link_to 'Dashboard', super_admin_root_path, class: "nav-link" %>        
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
+    <%= render "layouts/alert" %>
     
-    <% flash.each do |type, message| %>
-      <div class="btn btn-<%= type %>"><%= message %></div>
-    <% end %>
+    <div class="body-wrap">
+      <div id="st-container" class="st-container">
+          <div class="st-pusher">
+              <div class="st-content">
+                  <div class="st-content-inner">
 
-    <%= yield %>
+                    <%= render "layouts/header" %>
 
+                    <%= yield %>
+                  
+                    <%= render "layouts/footer" %>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://js.stripe.com/v3/"></script>
 
     <!-- Icons -->
     <script>
-      feather.replace()
+      $('.modal').modal('show');
+      feather.replace();
     </script>
 
   </body>

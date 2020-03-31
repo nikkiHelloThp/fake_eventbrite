@@ -1,11 +1,1 @@
-<% @users.each do |user| %>
-	<% unless user.is_super_admin %>
-		<%= user.f_name %> <%= user.l_name %> <%= user.email %>
-		<%= link_to 'Show', super_admin_user_path(user), class: "btn btn-primary" %>
-		<%= link_to 'Edit', edit_super_admin_user_path(user), class: "btn btn-warning" %>
-		<%= link_to 'Delete', super_admin_user_path(user), method: :delete, class: "btn btn-danger" %>
-		<hr>
-	<% end %>
-<% end %>
-
-<%= link_to 'Create', new_super_admin_user_path, class: "btn btn-success" %>
+<%= render 'users' %>

@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-
+	
 	after_update :send_event_validated_email
 
 	belongs_to :admin, class_name: "User"
@@ -25,7 +25,10 @@ class Event < ApplicationRecord
 
 	validates :price,
 		presence: true,
-		length: { maximum: 1000 } 
+		length: { maximum: 1000 }
+
+	scope :validated, -> { where(validated: true).order(updated_at: :desc) }
+	scope :to_valid, -> { where(validated: nil) }
 
 
 	def start_date_cannot_be_in_the_past
@@ -45,13 +48,21 @@ class Event < ApplicationRecord
 	end
 
 	def is_free?
-		self.price == 0
+		price == 0
 	end
 
 	def send_event_validated_email
 		if self.validated != nil && self.validated_changed?
 			EventMailer.event_validated_email(self).deliver_now
 		end
+	end
+
+	def parsed_date
+		DateTime.parse(self.start_date.httpdate).strftime('%d / %b').upcase
+	end
+
+	def username_from_email
+		admin.email.split('@')[0]
 	end
 
 end

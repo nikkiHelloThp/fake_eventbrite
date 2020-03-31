@@ -1,25 +1,123 @@
 <% if current_user == @user %>
-	<h2>My profile</h2>
-	<p>email: <%= @user.email %></p>
-	<p>first name: <%= @user.f_name %></p>
-	<p>last name: <%= @user.l_name %></p>
-	<p>description: <%= @user.description %></p>
-	
-	<% if @user.avatar.attached? %>
-		<p>mon avatar: <%= image_tag @user.avatar, alt: 'avatar' %></p>
-	<% else %>
-		<p>=== Il n'y a aucun avatar lie pour l'instant ===</p>
-	<% end %>
+    <section class="slice-sm sct-color-1">
+        <div class="profile">
+            <div class="container">
+                <div class="row cols-xs-space cols-sm-space cols-md-space">
+                    <div class="col-lg-4">
+                        <div class="sidebar sidebar--style-2 no-border stickyfill">
+                            <div class="widget">
+                                <!-- Profile picture -->
+                                <div class="profile-picture profile-picture--style-2">
+                                    <% if @user.avatar.attached? %>
+                                        <%= image_tag @user.avatar, alt: 'avatar', class: 'img-center' %>
+                                    <% else %>
+                                        <p>=== Il n'y a aucun avatar lie pour l'instant ===</p>
+                                    <% end %>
+                                </div>
 
-	<%= form_with(url: user_avatars_path(@user), multipart: true) do %>
-  	<%= file_field_tag :avatar %>
-  	<%= submit_tag 'mettre a jour' %>
-	<% end %>
+                                <!-- Profile details -->
+                                <div class="profile-details">
+                                    <h2 class="heading heading-4 strong-500 profile-name"><%= @user.f_name %> <%= @user.l_name %></h2>
+                                    <h3 class="heading heading-6 strong-400 profile-occupation mt-3"><%= @user.description %></h3>
+                                    <h3 class="heading heading-light heading-6 strong-400 profile-location"><%= @user.email %></h3>
+                                </div>
 
-	<%= link_to 'edit', edit_user_registration_path %>
+                                <!-- Profile connect -->
+                                <div class="profile-connect mt-4">
+                                    <%= link_to 'Editer', edit_user_registration_path, class: "btn btn-styled btn-block btn-rounded btn-base-1" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-	<h3>My events</h3>
-	<% @events.each_with_index do |event, index| %>
-	<p><%= index + 1%> - <%= event.title %> <%= link_to 'show', event_path(event.id) %></p>
-	<% end %>
+                    <div class="col-lg-8">
+                        <div class="main-content">
+                            <!-- Page title -->
+                            <div class="page-title">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-12">
+                                        <h2 class="heading heading-5 text-capitalize strong-500 mb-0">
+                                            <a href="#" class="link text-underline--none">
+                                                <i class="fa fa-chevron-down"></i> Profile
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- Security steps -->
+                            <div class="card no-border">
+                                <div class="card-body px-0">
+                                    <ul class="list-group">
+                                        <li class="list-group-item bg-transparent">
+                                            <div class="row align-items-center">
+                                                <div class="col-3">
+                                                    <h5 class="heading heading-6 strong-500">Avatar</h5>
+                                                    <p class="text-md mb-0">
+                                                        Actualise ton avatar.
+                                                    </p>
+                                                </div>
+
+                                                <div class="col-9 text-right">
+                                                    <%= form_with(url: user_avatars_path(@user), multipart: true) do %>
+                                                        <%= file_field_tag :avatar %>
+                                                        <%= submit_tag 'Mettre a jour', class: "btn btn-base-1 btn-outline" %>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+
+                                        </li>
+
+                                        <li class="list-group-item bg-transparent">
+                                            <div class="row align-items-center">
+                                                <div class="col-8">
+                                                    <h5 class="heading heading-6 strong-500">Evenements</h5>
+                                                    <p class="text-md mb-0">
+                                                        Gestion de mes evenements.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="card mt-4">
+                                                <div class="list-group">
+                                                    <div class="list-group-item list-group-item-sm list-group-item-light">
+                                                        <div class="row">
+                                                            <div class="col-8">
+                                                                Titre
+                                                            </div>
+                                                            <div class="col-4">
+                                                                Action
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% @events.each do |event| %>
+                                                        <div class="list-group-item list-group-item-action">
+                                                            <div class="row">
+                                                                <div class="col-8">
+                                                                    <span class="c-gray-dark"><%= event.title %></span>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <%= link_to 'show', event_path(event.id), class: 'btn btn-base-1 btn-outline' %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% end %>
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 <% end %>

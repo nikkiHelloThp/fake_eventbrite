@@ -1,0 +1,34 @@
+<div class="header">
+
+    <nav class="navbar navbar-expand-lg navbar--bold <%= current_page?('/') || current_page?('/events') ? 'navbar-transparent' : '' %> navbar-inverse bg-dark ">
+        <div class="container navbar-container">
+            <%= link_to '<h1 class="eventbrite-color"><strong>eventbrite</strong></h1>'.html_safe, root_path, class: "navbar-brand d-none d-lg-inline-block" %>
+            <div class="d-inline-block">
+                <button class="navbar-toggler hamburger hamburger-js hamburger--spring" type="button" data-toggle="collapse" data-target="#navbar_main" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse align-items-center justify-content-end" id="navbar_main">
+                <div class="navbar-nav ml-lg-auto">
+                    <% if user_signed_in? %>
+                        <%= link_to 'Mon profil', user_path(current_user), class: "nav-link" %>
+                        <%= link_to 'Se deconnecter', destroy_user_session_path, method: :delete, class: "nav-link" %>
+                    <% else %>
+                        <%= link_to 'S\'inscrire', new_user_registration_path, class: "nav-link" %>
+                        <%= link_to 'Se connecter', new_user_session_path, class: "nav-link" %>
+                    <% end %>
+                    <% if current_user && current_user.is_super_admin %>
+                        <%= link_to 'Dashboard', super_admin_root_path, class: "nav-link" %>        
+                    <% end %>
+                </div>
+            </div>
+
+            <div class="pl-4 d-none d-lg-inline-block">
+                <%= link_to 'Create an event', new_event_path, class: "btn btn-styled btn-sm btn-white btn-outline btn-circle" %>
+            </div>
+        </div>
+    </nav>
+</div>

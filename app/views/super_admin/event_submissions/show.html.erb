@@ -1,10 +1,90 @@
-<p>id: <%= @event_to_valid.id %></p>
-<p>start date: <%= @event_to_valid.start_date %></p>
-<p>duration: <%= @event_to_valid.duration %></p>
-<p>title: <%= @event_to_valid.title %></p>
-<p>description: <%= @event_to_valid.description %></p>
-<p>price: <%= @event_to_valid.price %></p>
-<p>location: <%= @event_to_valid.location %></p>
-<p>creator: <%= @event_to_valid.admin_id %></p>
-<p>created at: <%= @event_to_valid.created_at %></p>
-<%= link_to 'Edit', edit_super_admin_event_submission_path(@event_to_valid), class: "btn btn-warning" %>
+<div class="card no-border">
+    <div class="card-body px-0">
+        <ul class="list-group">
+
+            <li class="list-group-item bg-transparent">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h5 class="heading heading-6 strong-500"><%= params[:controller].humanize %></h5>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-sm list-group-item-light">
+                            <div class="row">
+                                <div class="col-1">
+                                    #
+                                </div>
+                                <div class="col-1">
+                                    Titre
+                                </div>
+                                <div class="col-1">
+                                    Description
+                                </div>
+                                <div class="col-1">
+                                    Lieu
+                                </div>
+                                <div class="col-1">
+                                    Duree
+                                </div>
+                                <div class="col-1">
+                                    Prix
+                                </div>
+                                <div class="col-1">
+                                    Date
+                                </div>
+                                <div class="col-1">
+                                    Cree le
+                                </div>
+                                <div class="col-1">
+                                    Cree par
+                                </div>
+                                <div class="col-1">
+                                    Action
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-group-item list-group-item-action">
+                            <div class="row">
+                                <div class="col-1">
+                                    <span class="c-gray-dark"><%= @event_to_valid.id %></span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="c-gray-dark"><%= @event_to_valid.title %></span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="c-gray-dark"><%= @event_to_valid.description %></span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="c-gray-dark"><%= @event_to_valid.location %></span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="c-gray-dark"><%= @event_to_valid.duration %></span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="c-gray-dark">$ <%= @event_to_valid.price %></span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="c-gray-dark"><%= @event_to_valid.start_date %></span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="c-gray-dark"><%= @event_to_valid.created_at %></span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="c-gray-dark"><%= @event_to_valid.admin.email %></span>
+                                </div>
+                                <div class="col-1">
+                                    <%= link_to 'Edit', edit_super_admin_event_submission_path(@event_to_valid), class: 'btn btn-base-1 btn-outline' %>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <%= link_to "Back", :back %>
+</div>

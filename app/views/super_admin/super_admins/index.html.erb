@@ -1,34 +1,61 @@
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item"><span>Admin: </span><%= @admin.id %></li>
-          <li class="nav-item">
-            <%= link_to super_admin_users_path, class: "nav-link" do %>
-              <span data-feather="users"></span>
-              Users
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to super_admin_events_path, class: "nav-link" do %>
-              <span data-feather="book-open"></span>
-              Events
-            <% end %>
-          </li>             
-          <li class="nav-item">
-            <%= link_to super_admin_event_submissions_path, class: "nav-link" do %>
-              <span data-feather="check-circle"></span>
-              Events to valid
-            <% end %>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-        <h1 class="h2">Could render partials here!</h1>
-      </div>
-    </main>
-  </div>
-</div>
+<section class="slice-sm sct-color-1">
+    <div class="profile">
+        <div class="container">
+            <div class="row cols-xs-space cols-sm-space cols-md-space">
+
+                <div class="col-lg-4">
+                    <div class="sidebar sidebar--style-2 no-border stickyfill">
+                      <ul class="nav flex-column">
+                        <li class="nav-item">
+                          <%= link_to super_admin_users_path, class: "nav-link", remote: true do %>
+                            <span data-feather="users"></span>
+                            Users
+                          <% end %>
+                        </li>
+                        <li class="nav-item">
+                          <%= link_to super_admin_events_path, class: "nav-link", remote: true do %>
+                            <span data-feather="book-open"></span>
+                            Events
+                          <% end %>
+                        </li>             
+                        <li class="nav-item">
+                          <%= link_to super_admin_event_submissions_path, class: "nav-link", remote: true do %>
+                            <span data-feather="check-circle"></span>
+                            Events to valid
+                          <% end %>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="main-content">
+                        <!-- Page title -->
+                        <div class="page-title">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 col-12">
+                                    <h2 class="heading heading-5 text-capitalize strong-500 mb-0">
+                                        <a href="#" class="link text-underline--none">
+                                            <i class="fa fa-chevron-down"></i> Dashboard Admin: <%= @admin.id %>
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="page-content">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 col-12">
+                                    <div id="partials"></div>
+                                    <!------------------------ Partials here --------------------------->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

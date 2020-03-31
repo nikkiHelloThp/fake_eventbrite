@@ -22,12 +22,12 @@
 //= require bootstrap/js/slidebar
 //= require bootstrap/js/classie
 
-//= requirebootstrap-notify/bootstrap-growl.min
-//= requirescrollpos-styler/scrollpos-styler
+//= require bootstrap-notify/bootstrap-growl.min
+//= require scrollpos-styler/scrollpos-styler
 
-//= requireadaptive-backgrounds/adaptive-backgrounds
-//= requirecountdown/js/jquery.countdown.min
-//= requiredropzone/dropzone.min
+//= require adaptive-backgrounds/adaptive-backgrounds
+//= require countdown/js/jquery.countdown.min
+//= require dropzone/dropzone.min
 //= require easy-pie-chart/jquery.easypiechart.min
 //= require fancybox/js/jquery.fancybox.min
 //= require flatpickr/flatpickr.min

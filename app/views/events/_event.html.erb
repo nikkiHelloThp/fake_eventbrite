@@ -1,0 +1,229 @@
+<section class="slice sct-color-1">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8">
+                <div class="block block-post">
+                    <div class="mb-4">
+                        <h3 class="heading heading-2 strong-400 text-normal"><%= @event.title %></h3>
+                        <ul class="inline-links inline-links--style-2 mt-1">
+                            <li><%= @event.start_date.httpdate %></li>
+                            <li>by <%= @admin_email %></li>
+                            <li><%= @count %> participants</li>
+                        </ul>
+                    </div>
+<!----- Ajouter gestion de la photo ------>
+
+					<% if @event.photo.attached? %>
+                        <div class="block-image">
+                            <%= image_tag @event.photo, alt: 'photo', class: "rounded" %>
+                        </div>
+					<% else %>
+						<p>=== Il n'y a aucun photo lie pour l'instant ===</p>
+					<% end %>
+
+                    <% if current_user == @event.admin %>
+    					<%= form_with(url: event_photos_path(@event), multipart: true) do %>
+    						<%= file_field_tag :photo %>
+    						<%= submit_tag 'ajouter image' %>
+    					<% end %>
+
+    				<% end %>
+<!----- Fin gestion de la photo ------>
+                    <div class="block-body block-post-body">
+                        <p>
+                            She exposed painted fifteen are noisier mistake led waiting. Surprise not wandered speedily husbands although yet end. Are court tiled cease young built fat one man taken. We highest ye friends is exposed equally in. Ignorant had too strictly followed. Astonished as travelling assistance or unreserved oh pianoforte ye. Five with seen put need tore add neat. Bringing it is he returned received raptures.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4">
+
+                    <!-- About me -->
+                    <div class="sidebar-object b-xs-bottom">
+                        <div class="block">
+                            <div class="">
+                                <h3 class="heading heading-3 strong-500">
+                                <a href="#">
+                                <%= @event.title %>
+                                </a>
+                                </h3>
+                                <h4 class="heading heading-xs strong-400 text-uppercase c-gray-light letter-spacing-2">
+                                <%= @event.price > 0 ? '@event.price' : 'Gratuit' %>
+                                </h4>
+                                <h5 class="heading heading-5 strong-500">Lieu</h5>
+                                <p class="mt-2">
+                                  <%= @event.location %>
+                                </p>
+                                <h5 class="heading heading-5 strong-500">Date - Duree</h5>
+                                <p class="mt-2">
+                                  <%= @event.start_date.httpdate %> - <%= @event.duration %> minutes
+                                </p>
+                                <h5 class="heading heading-5 strong-500">Propose par</h5>
+                                <p class="mt-2">
+                                  <%= @admin_email %>
+                                </p>
+
+                                <div class="pt-1">
+                                	<% if !@attendee.nil? %>
+                                       <strong class="eventbrite-color">Vous participe deja a cet evennement</strong>
+                                    <% elsif current_user != @event.admin %>
+                                        <%= link_to 'rejoindre l\'evenement', new_event_attendance_path(@event.id), class: 'btn btn-block btn-success' %>
+                                    <% else %>
+										<strong class="eventbrite-color">Vous ne pouvez pas participer a votre evennement</strong>
+									<% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stay connected -->
+                    <div class="sidebar-object">
+                        <div class="section-title section-title--style-1">
+                            <h3 class="section-title-inner heading-sm strong-500">
+                            Stay connected
+                            </h3>
+                        </div>
+
+                        <div class="">
+                            <ul class="social-media social-media--style-1-v3 social-media-circle">
+                                <li>
+                                    <a href="#" class="facebook" target="_blank" title="Facebook">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="instagram" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dribbble" target="_blank">
+                                        <i class="fa fa-dribbble"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dribbble" target="_blank">
+                                        <i class="fa fa-github"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://wrapbootstrap.com/user/webpixels" class="dribbble" target="_blank">
+                                        <i class="fa fa-shopping-bag"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Popular topics -->
+                    <div class="sidebar-object">
+                        <div class="section-title section-title--style-1">
+                            <h3 class="section-title-inner heading-sm strong-500">
+                            Derniers participants
+                            </h3>
+                        </div>
+
+                        <ul class="list-recent">
+                            <li class="clearfix">
+                                <a href="#" class="post-thumb">
+                                    <%= image_tag("prv/magazine/person-1.jpg") %>
+                                </a>
+                                <span class="post-author">
+                                <a href="#">Bettie Mavis</a>
+                                <br>
+                                35 mins ago
+                                </span>
+                                <span class="post-entry">
+                                Sed molestie augue sit consequat posuere.
+                                </span>
+                            </li>
+                            <li class="clearfix">
+                                <a href="#" class="post-thumb">
+                                    <%= image_tag("prv/magazine/person-2.jpg") %>
+                                </a>
+                                <span class="post-author">
+                                <a href="#">Darby Jewell</a>
+                                <br>
+                                1 hr ago
+                                </span>
+                                <span class="post-entry">
+                                Sed molestie augue sit consequat posuere.
+                                </span>
+                            </li>
+                            <li class="clearfix">
+                                <a href="#" class="post-thumb">
+                                    <%= image_tag("prv/magazine/person-3.jpg") %>
+                                </a>
+                                <span class="post-author">
+                                <a href="#">Destiny Erykah</a>
+                                <br>
+                                4 hrs ago
+                                </span>
+                                <span class="post-entry">
+                                Sed molestie augue sit consequat posuere.
+                                </span>
+                            </li>
+                            <li class="clearfix">
+                                <a href="#" class="post-thumb">
+                                    <%= image_tag("prv/magazine/person-4.jpg") %>
+                                </a>
+                                <span class="post-author">
+                                    <a href="#">Cliff Simon</a>
+                                    <br>
+                                    5 hrs ago
+                                </span>
+                                <span class="post-entry">
+                                    Sed molestie augue sit consequat posuere.
+                                </span>
+                            </li>
+                            <li class="clearfix">
+                                <a href="#" class="post-thumb">
+                                    <%= image_tag("prv/magazine/person-5.jpg") %>
+                                </a>
+                                <span class="post-author">
+                                    <a href="#">Desiree Jinny</a>
+                                    <br>
+                                    6 hrs ago
+                                </span>
+                                <span class="post-entry">
+                                    Sed molestie augue sit consequat posuere.
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="sidebar-object">
+                        <div class="section-title section-title--style-1">
+                            <h3 class="section-title-inner heading-sm strong-500">
+                                <% if current_user == @event.admin %>
+																	<%= link_to 'mon espace evenement', event_attendances_path(@event.id), class: 'text-uppercase' %>
+																<% end %>
+                            </h3>
+                        </div>
+
+                        <ul class="categories categories--style-2">
+                            <li>
+                                <a href="#">Lifestyle</a>
+                            </li>
+                            <li>
+                                <a href="#">Nutrition</a>
+                            </li>
+                            <li>
+                                <a href="#">Fitness</a>
+                            </li>
+                            <li>
+                                <a href="#">Family</a>
+                            </li>
+                            <li>
+                                <a href="#">Travel</a>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>

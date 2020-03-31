@@ -1,0 +1,75 @@
+<div class="card no-border">
+    <div class="card-body px-0">
+        <ul class="list-group">
+            <li class="list-group-item bg-transparent">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h5 class="heading heading-6 strong-500">A valider</h5>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-sm list-group-item-light">
+                            <div class="row">
+                                <div class="col-8">
+                                    Titre
+                                </div>
+                                <div class="col-4">
+                                    Action
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <div class="row">
+                            	<% @events_to_valid.each do |event_to_valid| %>
+                                <div class="col-8">
+                                    <span class="c-gray-dark"><%= event_to_valid.title %></span>
+                                </div>
+                                <div class="col-4">
+                                	<%= link_to 'Show', super_admin_event_submission_path(event_to_valid), class: "btn btn-base-1 btn-outline" %>
+                                </div>
+                              <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="list-group-item bg-transparent">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h5 class="heading heading-6 strong-500">Deja valide</h5>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-sm list-group-item-light">
+                            <div class="row">
+                                <div class="col-8">
+                                    Titre
+                                </div>
+                                <div class="col-4">
+                                    Action
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <div class="row">
+                            	<% @validated_events.each do |event| %>
+                                <div class="col-8">
+                                    <span class="c-gray-dark"><%= event.title %></span>
+                                </div>
+                                <div class="col-4">
+                                	<%= link_to 'Show', super_admin_event_submission_path(event), class: "btn btn-base-1 btn-outline" %>
+                                </div>
+                              <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

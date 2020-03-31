@@ -1,21 +1,19 @@
 class SuperAdmin::EventSubmissionsController < ApplicationController
+  before_action :set_event, only: %i[show edit update]
+
   def index
-  	@events_to_valid = Event.where(validated: nil);
-    @validated_events = Event.where(validated: true);
+  	@events_to_valid = Event.to_valid
+    @validated_events = Event.validated
   end
 
   def show
-  	@event_to_valid = Event.find(params[:id])
+  	@event_to_valid = @event
   end
 
   def edit
-    @event_to_valid = Event.find(params[:id])
-    puts "@" * 89
-    puts params
   end
 
   def update
-    @event = Event.find(params[:id])
     @valid = 
       params[:event][:validated] == 'yes' ? true : false
     if @event.update(validated: @valid)
@@ -26,5 +24,12 @@ class SuperAdmin::EventSubmissionsController < ApplicationController
       render :edit
     end
 
+  end
+
+
+  private
+
+  def set_event
+    @event ||= Event.find(params[:id])
   end
 end

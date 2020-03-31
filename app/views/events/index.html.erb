@@ -1,32 +1,14 @@
-<main role="main">
+<%= render "layouts/banner" %>
 
-  <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">Hello, world!</h1>
-      <p>This app provides the CRUD, Authentication, dashboard admin, etc..</p>
-    </div>
-  </div>
+<!-------------------------- Debut cards ------------------------------->
 
-  <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-      <% @events.each do |event| %>
-        <div class="col-md-4">
-          <h2><%= event.title %></h2>
-          <p><%= event.description %></p>
-          <p>quand: <%= event.start_date %></p>
-          <p><%= event.duration %> minutes</p>
-          <p><%= event.price %> euros</p>
-          <p>où?: <%= event.location %></p>
-            <%= link_to 'View details &raquo;'.html_safe, event_path(event.id), class: "btn btn-primary btn-lg" %>
-          </p>
+<section class="slice sct-color-1">
+    <div class="container container-sm">
+        <div class="row masonry">
+          <% @events.each do |event| %>
+            <%= render 'card', event: event %>
+          <% end %>
         </div>
-      <% end %>
     </div>
-
-    <hr>
-
-  </div> <!-- /container -->
-
-</main>
+</section>
+<!-------------------------- Fin cards ------------------------------->
