@@ -1,4 +1,4 @@
-class SuperAdmin::UsersController < ApplicationController
+class SuperAdmin::UsersController < SuperAdmin::ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
   def index
@@ -10,7 +10,6 @@ class SuperAdmin::UsersController < ApplicationController
 
   def new
     @user = User.new
-    @random_user = rand(1..9999)
   end
 
   def create
@@ -19,7 +18,7 @@ class SuperAdmin::UsersController < ApplicationController
       flash[:success] = "User created"
       redirect_to super_admin_users_path
     else
-      flash.now[:danger] = "#{user.errors.messages}"
+      flash.now[:danger] = "#{user.errors.full_messages}"
       render :new
     end
   end
@@ -32,7 +31,7 @@ class SuperAdmin::UsersController < ApplicationController
       flash[:success] = "User updated"
       redirect_to super_admin_users_path
     else
-      flash.now[:danger] = "#{@user.errors.messages}"
+      flash.now[:danger] = "#{@user.errors.full_messages}"
       render :edit
     end
   end
@@ -42,7 +41,7 @@ class SuperAdmin::UsersController < ApplicationController
       flash[:success] = "User deleted"
       redirect_to super_admin_users_path
     else
-      flash.now[:danger] = "#{@user.errors.messages}"
+      flash.now[:danger] = "#{@user.errors.full_messages}"
     end
   end
 

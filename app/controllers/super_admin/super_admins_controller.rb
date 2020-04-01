@@ -1,15 +1,4 @@
-class SuperAdmin::SuperAdminsController < ApplicationController
-	before_action :check_if_super_admin
-
+class SuperAdmin::SuperAdminsController < SuperAdmin::ApplicationController
   def index
   end
-
-
-  private
-
-  def check_if_super_admin
-		 if current_user
-  		@admin = current_user if current_user.is_super_admin
-  	end
-	end
 end

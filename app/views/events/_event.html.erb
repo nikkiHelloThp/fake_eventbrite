@@ -68,7 +68,7 @@
                            <% if !@attendee.nil? %>
                            <strong class="eventbrite-color">Vous participe deja a cet evennement</strong>
                            <% elsif current_user != @event.admin %>
-                           <%= link_to 'rejoindre l\'evenement', new_event_attendance_path(@event.id), class: 'btn btn-block btn-success' %>
+                           <%= link_to 'rejoindre l\'evenement', new_event_attendance_path(@event), class: 'btn btn-block btn-success' %>
                            <% else %>
                            <strong class="eventbrite-color">Vous ne pouvez pas participer a votre evennement</strong>
                            <% end %>
@@ -81,7 +81,7 @@
                 <div class="section-title section-title--style-1">
                     <h3 class="section-title-inner heading-sm strong-500">
                         <% if current_user == @event.admin %>
-                        <%= link_to 'mon espace evenement', event_attendances_path(@event.id), class: 'text-uppercase' %>
+                        <%= link_to 'mon espace evenement', event_attendances_path(@event), class: 'text-uppercase' %>
                         <% end %>
                     </h3>
                 </div>

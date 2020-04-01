@@ -1,4 +1,4 @@
-class SuperAdmin::EventsController < ApplicationController
+class SuperAdmin::EventsController < SuperAdmin::ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
@@ -20,10 +20,9 @@ class SuperAdmin::EventsController < ApplicationController
       flash[:success] = "Event created"
       redirect_to super_admin_events_path
     else
-      flash.now[:danger] = "#{event.errors.messages}"
+      flash.now[:danger] = "#{event.errors.full_messages}"
       render :new
     end
-    p event.errors.full_messages
   end
 
   def edit
@@ -34,7 +33,7 @@ class SuperAdmin::EventsController < ApplicationController
       flash[:success] = "Event updated"
       redirect_to super_admin_events_path
     else
-      flash.now[:danger] = "#{@event.errors.messages}"
+      flash.now[:danger] = "#{@event.errors.full_messages}"
       render :edit
     end
   end

@@ -2,7 +2,7 @@
     <div class="block block--style-3">
         <div class="block-image relative">
             <div class="view view-first">
-              <%= link_to event_path(event.id) do %>
+              <%= link_to event_path(event) do %>
                 <% if event.photo.attached? %>
                     <%= image_tag event.photo, alt: 'photo' %>
                     <span class="block-date-over"><%= event.parsed_date %></span>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="col-6 text-right">
-                  <%= link_to '<i class="fa fa-long-arrow-right"></i> Read more'.html_safe, event_path(event.id), class: "link link-sm link--style-2" %>
+                  <%= link_to '<i class="fa fa-long-arrow-right"></i> Read more'.html_safe, event_path(event), class: "link link-sm link--style-2" %>
                 </div>
             </div>
         </div>

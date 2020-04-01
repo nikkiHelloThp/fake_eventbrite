@@ -23,7 +23,7 @@
       <% end %>
     <% else %>
       <p>Cet evenement est gratuit!!! &#129323;</p>
-      <%= link_to 'clique ici', event_attendances_path(@event.id), method: :post, class: "btn btn-lg btn-primary btn-block" %>
+      <%= link_to 'clique ici', event_attendances_path(@event), method: :post, class: "btn btn-lg btn-primary btn-block" %>
     <% end %>
     </div>
   </div>

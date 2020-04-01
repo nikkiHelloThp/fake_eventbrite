@@ -1,4 +1,4 @@
-class SuperAdmin::EventSubmissionsController < ApplicationController
+class SuperAdmin::EventSubmissionsController < SuperAdmin::ApplicationController
   before_action :set_event, only: %i[show edit update]
 
   def index
@@ -20,7 +20,7 @@ class SuperAdmin::EventSubmissionsController < ApplicationController
       flash[:success] = "The event is validated"
       redirect_to super_admin_event_submissions_path
     else
-      flash.now[:danger] = "#{@event.errors.messages}"
+      flash.now[:danger] = "#{@event.errors.full_messages}"
       render :edit
     end
 

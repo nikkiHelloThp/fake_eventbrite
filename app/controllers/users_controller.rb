@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
+
 	before_action :authenticate_user!
   before_action :set_user
 	before_action :is_user_legit?
 
   def show
-  	@events = Event.where(admin: @user);
+  	@events = Event.where(admin: @user)
   end
 
   def edit

@@ -1,8 +1,10 @@
 require_relative '../services/charge'
 
 class AttendancesController < ApplicationController
+  include AttendancesHelper
+  
   before_action :get_event
-  before_action :is_admin_of_event?, only: [:index]
+  before_action :is_event_admin?, only: [:index]
 
   def index
   	@attendances = @event.attendances
@@ -26,15 +28,8 @@ class AttendancesController < ApplicationController
       flash[:success] = "Vous participez a l'evenement"
       redirect_to @event
     else
-      flash[:danger] = "#{attendance.errors.messages}"
+      flash[:danger] = "#{attendance.errors.full_messages}"
       render :new
-    end
-  end
-
-  def is_admin_of_event?
-    unless current_user == @event.admin
-      flash[:danger] = "Vous n'etes pas admin de cet evenement!"
-      redirect_to root_path
     end
   end
 

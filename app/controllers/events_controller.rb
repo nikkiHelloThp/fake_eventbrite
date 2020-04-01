@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!, except: [:index]
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
@@ -24,7 +24,7 @@ class EventsController < ApplicationController
   		redirect_to event
   	else
   		render :new
-  		flash.now[:danger] = "#{event.errors.messages}"
+  		flash.now[:danger] = "#{event.errors.full_messages}"
   	end
   end
 
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
       redirect_to @event
     else
       render :edit
-      flash.now[:danger] = "#{@event.errors.messages}"
+      flash.now[:danger] = "#{@event.errors.full_messages}"
     end
   end
 
