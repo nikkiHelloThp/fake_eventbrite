@@ -22,14 +22,11 @@
         </div>
         <div class="block-footer border-top">
             <div class="row align-items-center">
-            <!-- author-info -->
                 <div class="col-6">
                     <div class="block-author">
                         <div class="author-image author-image-xs">
                             <% if event.admin.avatar.attached? %>
                                 <%= image_tag event.admin.avatar %>
-                            <% else %>
-                                <%= image_tag("redhead.jpg") %> <!-- Default Image -->
                             <% end %>
                         </div>
                         <div class="author-info">
